@@ -1,4 +1,4 @@
-package org.nnn4eu.nfische.springtest.ctrl;
+package org.nnn4eu.nfische.springtest.Greeting;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
