@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1")
 public class Greeting {
-@GetMapping("/h")
-public String greetingA(){
-    return "Hy Hei Holla";
-}
+    @GetMapping("/a")
+    public String greetingA(){
+        return "Hy Hei Holla";
+    }
 
-    @GetMapping("/h")
+    @GetMapping("/b")
     public String greetingB(){
         return "Hy Hei Holla";
     }
 }
+
