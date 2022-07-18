@@ -17,6 +17,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 //@EnableCaching(proxyTargetClass = true)
+//@EnableTransactionManagement(proxyTargetClass = false)
 @SpringBootApplication
 public class BeanScopeTestApplication implements ApplicationContextAware {
 //or use extends SpringBootServletInitializer
