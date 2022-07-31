@@ -14,12 +14,13 @@ public class MyComponent {
     public MyComponent() {
 
         System.out.println("MyComponent constructor------------------------------"+name);
-        System.out.println(this.getClass().getTypeName());
+        System.out.println(this);
     }
 
     public void doSome(String a){
 
         System.out.println("MyComponent doSome, a>>>name: "+a+">>>"+name);
         System.out.println(this.getClass().getClassLoader());
+        System.out.println(this);
     }
 }

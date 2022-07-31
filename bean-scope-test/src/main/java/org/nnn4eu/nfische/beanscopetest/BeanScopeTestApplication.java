@@ -161,7 +161,8 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
     public static void test3() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoCGLIBConfig1.class);
         MyComponent myComponent=context.getBean("myComponent",MyComponent.class);
-        System.out.println("MyComponent class typeName: "+myComponent.getClass().getTypeName());
+        System.out.println("MyComponent class typeName-----"+myComponent.getClass().getTypeName());
+        System.out.println("MyComponent--------------------"+myComponent);
         myComponent.doSome("myComponent");
 //        =============================
         System.out.println("\nmethods declared on proxy of MyComponent----------------------------------");
@@ -295,5 +296,8 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
 
     public static boolean classIsProxy(Object o){
         return AopUtils.isAopProxy(o);
+//        return (object instanceof SpringProxy && (Proxy.isProxyClass(object.getClass()) ||
+//                object.getClass().getName().contains(ClassUtils.CGLIB_CLASS_SEPARATOR)));
+
     }
 }
