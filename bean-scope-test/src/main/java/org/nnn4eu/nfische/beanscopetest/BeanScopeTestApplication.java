@@ -1,8 +1,11 @@
 package org.nnn4eu.nfische.beanscopetest;
 
+import org.nnn4eu.nfische.beanscopetest.components.MyComponent;
 import org.nnn4eu.nfische.beanscopetest.config.DemoCGLIBConfig;
+import org.nnn4eu.nfische.beanscopetest.config.DemoCGLIBConfig1;
 import org.nnn4eu.nfische.beanscopetest.service.IAccountService;
 import org.nnn4eu.nfische.beanscopetest.web.model.Greeting;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.beans.factory.config.SingletonBeanRegistry;
@@ -26,10 +29,10 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
 //or use extends SpringBootServletInitializer
     private static ApplicationContext applicationContext;
     public static void main(String[] args) {
-        test0(args);
-
+//        test0(args);
 //        test1();
 //        test2();
+        test3();
 
     }
     public static void test0(String[] args) {
@@ -155,6 +158,25 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
 //        printBeans(context);
     }
 
+    public static void test3() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoCGLIBConfig1.class);
+        MyComponent myComponent=context.getBean("myComponent",MyComponent.class);
+        System.out.println("MyComponent class typeName: "+myComponent.getClass().getTypeName());
+        myComponent.doSome("myComponent");
+//        =============================
+        System.out.println("\nmethods declared on proxy of MyComponent----------------------------------");
+        for (Method method: myComponent.getClass().getDeclaredMethods()) {
+            System.out.println(method.toString().split(".components.")[1]);
+        }
+//        =============================
+//        DemoCGLIBConfig1 bean = context.getBean(DemoCGLIBConfig1.class);
+//        System.out.println("cglib counter: "+bean.getCounter()); //cglib counter: 1
+//        String res=bean.something();//this won't print but returns string <<< DemoCGLIBConfig1.counter is not increased!!!
+//        System.out.println(res);
+
+
+    }
+
     private static void printInterfaces(Object obj){
         System.out.println("---------printInterfaces for " + obj.getClass());
         for (Class<?> implementedInterface : obj.getClass().getInterfaces()) {
@@ -269,5 +291,9 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
     }
     public static boolean classCGLIBProxy(Class a) {
         return (org.springframework.cglib.proxy.Proxy.isProxyClass(a));
+    }
+
+    public static boolean classIsProxy(Object o){
+        return AopUtils.isAopProxy(o);
     }
 }
