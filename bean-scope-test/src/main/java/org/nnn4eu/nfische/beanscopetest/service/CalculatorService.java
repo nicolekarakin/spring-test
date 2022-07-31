@@ -54,4 +54,13 @@ public class CalculatorService implements InitializingBean {
     public Greeting greetingAgainAgainMonday(Greeting getGreeting){
         return getGreeting.greetMe("InCalculatorServiceGreeting");
     }
+
+    @Bean
+    public Greeting greetingThursday(){
+        return new Greeting().greetMe("Thursday");
+    }
+    @Bean
+    public Greeting greetingThursdaySunday(Greeting greetingThursday){
+        return greetingThursday.greetMe("ThursdaySunday");
+    }
 }
