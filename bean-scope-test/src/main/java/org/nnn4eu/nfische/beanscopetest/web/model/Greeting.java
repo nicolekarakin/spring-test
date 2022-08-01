@@ -6,20 +6,20 @@ public class Greeting {
     private String greeter="default-greeter";
     public Greeting greetMe(String str){
         greeter=str; greetingCount++;
-        System.out.println(this.toString());
+        System.out.println(this.toString2());
         return this;
     }
     public Greeting greetMe(){
         greetingCount++;
-        System.out.println(this.getClass()+", "+this.toString());
+        System.out.println(this+", "+this.toString2());
         return this;
     }
     public Greeting(){
         System.out.println("default constructor "+greeter+"! -----------------------"+ greetingCount);
         System.out.println(this.getClass().getTypeName());
     }
-    @Override
-    public String toString() {
+
+    public String toString2() {
         return "hello from "+greeter+"! "+ greetingCount;
     }
 }
