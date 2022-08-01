@@ -129,11 +129,13 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
         Greeting greeting12=context.getBean("greetingDefault",Greeting.class);
         System.out.println("retrieved greeting12 default bean: "+System.identityHashCode(greeting12));
         greeting12.greetMe();
-//hello from default-greeter! 2
-        greeting12.greetMe("Rony");
-//hello from Rony! 3
+        greeting12.greetMe();
+        greeting12.greetMe();
+        greeting12.greetMe("Rony5");
+//hello from Rony! 5
 
         System.out.println("greeting12.equals(greeting1): "+greeting12.equals(greeting1));//false
+        System.out.println("------------------------------------");
 //=========================================================
         Greeting greeting2=context.getBean("greetingHereto",Greeting.class);
         System.out.println("retrieved greeting2 default bean: "+System.identityHashCode(greeting2));
