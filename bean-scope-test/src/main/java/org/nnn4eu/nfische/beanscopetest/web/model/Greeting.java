@@ -11,12 +11,12 @@ public class Greeting {
     }
     public Greeting greetMe(){
         greetingCount++;
-        System.out.println(this.toString());
+        System.out.println(this.getClass()+", "+this.toString());
         return this;
     }
     public Greeting(){
         System.out.println("default constructor "+greeter+"! -----------------------"+ greetingCount);
-        System.out.println(this.getClass().getCanonicalName());
+        System.out.println(this.getClass().getTypeName());
     }
     @Override
     public String toString() {

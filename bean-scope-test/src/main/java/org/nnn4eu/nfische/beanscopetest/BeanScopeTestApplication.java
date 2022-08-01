@@ -30,9 +30,9 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
     public static void main(String[] args) {
 //        test0(args);
-//        test1();
+        test1();
 //        test2();
-        test3();
+//        test3();
 
     }
     public static void test0(String[] args) {
@@ -87,8 +87,8 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
 
 //        printBeans(applicationContext);
 //          printFilteredBeans(applicationContext, "$");
-        printProxiedBeans(applicationContext);
-        printConfigBeans(applicationContext);
+//        printProxiedBeans(applicationContext);
+//        printConfigBeans(applicationContext);
     }
 
     public static void test1() {
@@ -120,15 +120,32 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
         System.out.println("cglib counter: "+bean.getCounter());
 //cglib counter: 1
         Greeting greeting1=context.getBean("greetingDefault",Greeting.class);
+        System.out.println("retrieved greeting1 default bean: "+System.identityHashCode(greeting1));
         greeting1.greetMe();
 //hello from default-greeter! 2
         greeting1.greetMe("Rony");
 //hello from Rony! 3
 
+        Greeting greeting12=context.getBean("greetingDefault",Greeting.class);
+        System.out.println("retrieved greeting12 default bean: "+System.identityHashCode(greeting12));
+        greeting12.greetMe();
+//hello from default-greeter! 2
+        greeting12.greetMe("Rony");
+//hello from Rony! 3
+
+        System.out.println("greeting12.equals(greeting1): "+greeting12.equals(greeting1));//false
+//=========================================================
         Greeting greeting2=context.getBean("greetingHereto",Greeting.class);
+        System.out.println("retrieved greeting2 default bean: "+System.identityHashCode(greeting2));
         greeting2.greetMe();
 //hello from Hereto! 2
 
+        Greeting greeting22=context.getBean("greetingHereto",Greeting.class);
+        System.out.println("retrieved greeting22 default bean: "+System.identityHashCode(greeting22));
+        greeting22.greetMe();
+        greeting22.greetMe("rrrrr");
+
+        System.out.println("greeting2.equals(greeting22): "+greeting2.equals(greeting22));//true
     }
 
     static void test2(){
@@ -169,11 +186,12 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
         for (Method method: myComponent.getClass().getDeclaredMethods()) {
             System.out.println(method.toString().split(".components.")[1]);
         }
+        System.out.println("----------------------------------");
 //        =============================
-//        DemoCGLIBConfig1 bean = context.getBean(DemoCGLIBConfig1.class);
+        DemoCGLIBConfig1 bean = context.getBean(DemoCGLIBConfig1.class);
 //        System.out.println("cglib counter: "+bean.getCounter()); //cglib counter: 1
-//        String res=bean.something();//this won't print but returns string <<< DemoCGLIBConfig1.counter is not increased!!!
-//        System.out.println(res);
+        String res=bean.something2();//this won't print but returns string <<< DemoCGLIBConfig1.counter is not increased!!!
+        System.out.println(res);
 
 
     }

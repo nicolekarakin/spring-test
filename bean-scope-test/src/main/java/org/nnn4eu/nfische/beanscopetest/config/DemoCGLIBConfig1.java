@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration //(proxyBeanMethods = false)//<<< will execute something() not just one time regardless of how many time we call it
 @ComponentScan( basePackages = "org.nnn4eu.nfische.beanscopetest.components")//basePackageClasses = {MyComponent.class},
 //@DependsOn(value = "myComponent")
 public class DemoCGLIBConfig1 {
@@ -21,9 +21,10 @@ public class DemoCGLIBConfig1 {
     MyComponent myComponent;
 
     @Bean
-    public String something(){
+    public String something2(){
         this.counter++;
         System.out.println("something() invoked, this.counter: "+this.counter);
+        myComponent.doSome("something from config");
         return String.valueOf(this.counter);
     }
 
