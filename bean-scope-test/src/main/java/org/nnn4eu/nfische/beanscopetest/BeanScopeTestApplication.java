@@ -120,6 +120,7 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
         System.out.println("cglib counter: "+bean.getCounter());
 //cglib counter: 1
         Greeting greeting1=context.getBean("greetingDefault",Greeting.class);
+        System.out.println(greeting1);
         System.out.println("retrieved greeting1 default bean: "+System.identityHashCode(greeting1));
         greeting1.greetMe();
 //hello from default-greeter! 2
@@ -127,6 +128,7 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
 //hello from Rony! 3
 
         Greeting greeting12=context.getBean("greetingDefault",Greeting.class);
+        System.out.println(greeting12);
         System.out.println("retrieved greeting12 default bean: "+System.identityHashCode(greeting12));
         greeting12.greetMe();
         greeting12.greetMe();
@@ -138,11 +140,13 @@ public class BeanScopeTestApplication implements ApplicationContextAware {
         System.out.println("------------------------------------");
 //=========================================================
         Greeting greeting2=context.getBean("greetingHereto",Greeting.class);
+        System.out.println(greeting2);
         System.out.println("retrieved greeting2 default bean: "+System.identityHashCode(greeting2));
         greeting2.greetMe();
 //hello from Hereto! 2
 
         Greeting greeting22=context.getBean("greetingHereto",Greeting.class);
+        System.out.println(greeting22);
         System.out.println("retrieved greeting22 default bean: "+System.identityHashCode(greeting22));
         greeting22.greetMe();
         greeting22.greetMe("rrrrr");
